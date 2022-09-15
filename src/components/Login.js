@@ -45,7 +45,7 @@ export default function Login() {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("name", JSON.stringify(response.data.name));
         console.log("foi");
-        navigate('/home')
+        navigate("/home");
       })
       .catch((error) => {
         alert(error.message);
