@@ -33,7 +33,9 @@ export default function ContainerBooks(props) {
     return (
       <Flyer_Style>
         <img src={props.url} />
-        <div className="inf">{props.name}</div>
+        <div className="inf">
+          {props.name} <p>+</p>
+        </div>
       </Flyer_Style>
     );
   }
@@ -44,13 +46,11 @@ const Flyer_Style = styled.div`
   height: 208px;
   left: 30px;
   top: 169px;
-  margin-bottom: 11px;
   background: #ffffff;
   box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 20px;
+
   img {
     width: 130px;
     height: 168px;
@@ -58,7 +58,26 @@ const Flyer_Style = styled.div`
   .inf {
     width: 130px;
     height: 40px;
-
     background: #112255;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    p {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      /* identical to box height */
+
+      color: #f5f5f5;
+    }
   }
 `;

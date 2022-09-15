@@ -24,7 +24,11 @@ export default function Home() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <ContainerBooks genre={bookGenre} />
+      <div className="genre">{bookGenre}</div>
+      <div className="columnBooks">
+        <ContainerBooks genre={bookGenre} />
+      </div>
+      <div className="space"></div>
       <Footer />
     </Container>
   );
@@ -64,8 +68,27 @@ const Container = styled.div`
 
     background: #e0e0e0;
     border-radius: 8px;
+    margin-bottom: 19px;
   }
   .icon {
     font-size: 20px;
+  }
+  .genre {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    color: #112255;
+
+    margin-bottom: 18px;
+  }
+  .columnBooks {
+    width: 290px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
   }
 `;
