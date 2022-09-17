@@ -13,4 +13,6 @@ const Container = styled.div`
   height: 18px;
 
   background-color: #112255;
+
+  z-index: 1;
 `;

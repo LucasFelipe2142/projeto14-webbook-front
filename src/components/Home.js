@@ -2,19 +2,17 @@ import styled from "styled-components";
 import Top from "./Top";
 import Footer from "./Footer";
 import ContainerBooks from "./ContainerBooks";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import Context from "./contexts/Context";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [bookGenre, setBookGenre] = useState("all");
+  const { bookGenre } = useContext(Context);
   return (
     <Container>
       <Top />
       <div className="search">
-        <div className="icon">
-          <AiOutlineSearch color="666666" />
-        </div>
         <input
           disabled={false}
           type="text"
@@ -23,15 +21,23 @@ export default function Home() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        <div className="icon">
+          <AiOutlineSearch color="666666" />
+        </div>
       </div>
-      <div className="genre">{bookGenre}</div>
+      <div className="genre">{genreBook()}</div>
       <div className="columnBooks">
-        <ContainerBooks genre={bookGenre} />
+        <ContainerBooks genre={bookGenre} bookName={search} />
       </div>
       <div className="space"></div>
       <Footer />
     </Container>
   );
+
+  function genreBook() {
+    if (bookGenre === "all") return "Todos";
+    return bookGenre[0].toUpperCase() + bookGenre.substring(1);
+  }
 }
 
 const Container = styled.div`
