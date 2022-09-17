@@ -44,7 +44,8 @@ export default function Login() {
       .then((response) => {
         localStorage.setItem("token", JSON.stringify(response.data.token));
         localStorage.setItem("name", JSON.stringify(response.data.name));
-        console.log("foi");
+        localStorage.setItem("userId", JSON.stringify(response.data.userId));
+        // console.log("foi");
         navigate("/home");
       })
       .catch((error) => {
