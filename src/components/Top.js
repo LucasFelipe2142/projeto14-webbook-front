@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { AiOutlineShopping, AiOutlineMenu } from "react-icons/ai";
+import { useNavigate } from "react-router";
 
 export default function Top() {
+  const navigate = useNavigate();
   return (
     <Container>
-      <div className="icon">
+      <div className="icon" onClick={() => navigate("/options")}>
         <AiOutlineMenu color="white" />
       </div>
       WEBOOK
-      <div className="icon">
-        <AiOutlineShopping color="white" />
+      <div onClick={() => navigate("/buying")}>
+        <AiOutlineShopping color="white" fontSize={35} />
       </div>
     </Container>
   );
