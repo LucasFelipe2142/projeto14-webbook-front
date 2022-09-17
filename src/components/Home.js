@@ -8,7 +8,6 @@ import Context from "./contexts/Context";
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const [searchEnv, setSearchEnv] = useState("");
   const { bookGenre } = useContext(Context);
   return (
     <Container>
@@ -22,13 +21,13 @@ export default function Home() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="icon" onClick={() => setSearchEnv(search)}>
+        <div className="icon">
           <AiOutlineSearch color="666666" />
         </div>
       </div>
       <div className="genre">{genreBook()}</div>
       <div className="columnBooks">
-        <ContainerBooks genre={bookGenre} bookName={searchEnv} />
+        <ContainerBooks genre={bookGenre} bookName={search} />
       </div>
       <div className="space"></div>
       <Footer />

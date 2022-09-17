@@ -9,7 +9,7 @@ export default function Top() {
       <div className="icon" onClick={() => navigate("/options")}>
         <AiOutlineMenu color="white" />
       </div>
-      WEBOOK
+      <div onClick={() => navigate("/home")}>WEBOOK</div>
       <div onClick={() => navigate("/buying")}>
         <AiOutlineShopping color="white" fontSize={35} />
       </div>
@@ -36,6 +36,8 @@ const Container = styled.div`
   line-height: 57px;
 
   color: #f5f5f5;
+
+  z-index: 1;
 
   .icon {
     font-size: 30px;
