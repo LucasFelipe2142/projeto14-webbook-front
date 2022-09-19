@@ -10,9 +10,8 @@ export default function Checkout(){
 
     return(
         <Container>
-
-
-            <div onClick={() => navigate("/home")}>Confirmar compra</div>
+            <div>Sua compra foi finalizada com sucesso</div>
+            <div onClick={() => navigate("/home")}>Voltar a comprar</div>
         </Container>
 
     );

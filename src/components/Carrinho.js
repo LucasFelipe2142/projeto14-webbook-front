@@ -1,11 +1,11 @@
 import axios from "axios";
 import styled from "styled-components";
-//import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import Top from "./Top";
-//import Checkout from "./Checkout";
 
-//const navigate = useNavigate();
+
+
 
 function CarrinhoProduto({nome, preco, imagem} ){
 
@@ -22,7 +22,6 @@ function CarrinhoProduto({nome, preco, imagem} ){
                     </div>
                     <div className="quantidade">
                       <div>Quantidade:</div> 
-                      <div>Icone de lixeira</div>
                     </div>
                   </div>
                 </div>
@@ -32,6 +31,8 @@ function CarrinhoProduto({nome, preco, imagem} ){
 
 
 export default function Carrinho(){
+
+  const navigate = useNavigate();
 
   const [ cart, setCart ] = useState("");
 
@@ -56,11 +57,19 @@ export default function Carrinho(){
 
     }
 
-    async function Checkout(){
+    async function checkout(){
 
-     // axios.post("http://localhost:5000/purchases", {products: products, totalPrice: totalPrice,  userId: userId})
+      const token = localStorage.getItem("token").replace(/["']/g, "");
+
+      const config = {
+        headers: {
+          token: token
+        }
+      }
+
+      await axios.post("http://localhost:5000/purchases", {cart}, config);
       console.log(cart);
-      //navigate("/Checkout")
+      navigate("/checkout")
     }
 
     return(
@@ -79,7 +88,7 @@ export default function Carrinho(){
             <div className="button">Continuar Comprando</div>
                 <div className="confirma"> 
                     <div>Subtotal: {cart.totalPrice}R$</div>
-                    <div className="button" onClick={() => Checkout()}>Confirmar compra</div>
+                    <div className="button" onClick={() => checkout()}>Confirmar compra</div>
                 </div>
 
         

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { AiOutlineShopping, AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 
 export default function Options(){
