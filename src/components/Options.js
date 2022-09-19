@@ -27,7 +27,7 @@ const {setBookGenre} = useContext(Contextos);
                         }}>ROMANCE</p>
                         <p onClick={()=>{
                           setBookGenre('aventura')
-                          navigate('/hom')
+                          navigate('/home')
                         }}>AVENTURA</p>
                         <p onClick={()=>{
                           setBookGenre('ficção')
