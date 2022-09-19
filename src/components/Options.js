@@ -23,31 +23,31 @@ const {setBookGenre} = useContext(Contextos);
                     <div className="gen">
                         <p onClick={()=>{
                           setBookGenre('romance')
-                          navigate('/')
+                          navigate('/home')
                         }}>ROMANCE</p>
                         <p onClick={()=>{
                           setBookGenre('aventura')
-                          navigate('/')
+                          navigate('/hom')
                         }}>AVENTURA</p>
                         <p onClick={()=>{
                           setBookGenre('ficção')
-                          navigate('/')
+                          navigate('/home')
                         }}>FICÇÃO CIENTIFICA</p>
                         <p onClick={()=>{
                           setBookGenre('fantasia')
-                          navigate('/')
+                          navigate('/home')
                         }}>FANTASIA</p>
                         <p onClick={()=>{
                           setBookGenre('biogarfia')
-                          navigate('/')
+                          navigate('/home')
                         }}>BIOGRAFIA</p>
                         <p onClick={()=>{
                           setBookGenre('didaticos')
-                          navigate('/')
+                          navigate('/home')
                         }}>DIDATICOS</p>
                         <p onClick={()=>{
                           setBookGenre('infantis')
-                          navigate('/')
+                          navigate('/home')
                         }}>INFANTIS</p>
                        
                     </div>
