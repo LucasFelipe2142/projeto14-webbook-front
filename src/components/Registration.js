@@ -58,7 +58,7 @@ export default function Registration() {
   function registrate() {
     if (password === confirmPassword) {
       axios
-        .post("http://localhost:5000/cadastro", {
+        .post("https://project-14-webook.herokuapp.com/cadastro", {
           name: name,
           email: email,
           password: password,

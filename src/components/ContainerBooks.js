@@ -10,7 +10,7 @@ export default function ContainerBooks(props) {
   let newBooks;
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/home/${props.genre}`)
+      .get(`https://project-14-webook.herokuapp.com/home/${props.genre}`)
       .then((response) => {
         setBooks(response.data);
         console.log("foi");

@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function Flyer_props({ book }) {
   const [mostrar, setMostrar] = useState("none");
+  const navigate = useNavigate();
 
   return (
     <>
       <Flyer_Style onClick={() => setMostrar("inherit")}>
         <img src={book.url} />
         <div className="inf">
-          {book.name} <p>+</p>
+          <div>{book.name}</div> <p>+</p>
         </div>
       </Flyer_Style>
       <BookInf mostrar={mostrar}>
@@ -32,7 +35,7 @@ export default function Flyer_props({ book }) {
               </div>
             </div>
             <div className="buttons">
-              <div className="add">Adicionar ao carrinho</div>
+              <div className="add" onClick={()=> registrateBook()}>Adicionar ao carrinho</div>
               <div className="back" onClick={() => setMostrar("none")}>
                 Cancelar
               </div>
@@ -42,6 +45,28 @@ export default function Flyer_props({ book }) {
       </BookInf>
     </>
   );
+  function registrateBook() {
+    axios
+    .post("https://project-14-webook.herokuapp.com/cart", {
+        
+      name:book.name,
+      price: book.price,
+      sinopse: book.description,
+      imgUrl: book.url
+          
+    },{
+        headers: {
+          token: JSON.parse(localStorage.getItem("token")),
+        },
+      })
+    .then((response) => {
+      console.log("enviado para o carrinho");
+      navigate("/home");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 }
 
 const BookInf = styled.div`
@@ -223,9 +248,12 @@ const Flyer_Style = styled.div`
     color: #ffffff;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+
+    padding: 0 8px 0 8px;
 
     p {
+      margin-left: 8px;
       font-style: normal;
       font-weight: 700;
       font-size: 16px;

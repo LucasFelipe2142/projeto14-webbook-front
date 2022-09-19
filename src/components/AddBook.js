@@ -90,7 +90,7 @@ export default function Registration() {
   );
     function addBook() {
         axios
-        .post("http://localhost:5000/sold", {
+        .post("https://project-14-webook.herokuapp.com/sold", {
             
                 name: name,
                 pag_number: pagNumber,

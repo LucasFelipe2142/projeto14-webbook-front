@@ -37,7 +37,7 @@ export default function Login() {
 
   function logar() {
     axios
-      .post("http://localhost:5000/login", {
+      .post("https://project-14-webook.herokuapp.com/login", {
         email: login,
         password: password,
       })
