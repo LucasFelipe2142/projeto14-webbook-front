@@ -7,6 +7,8 @@ import Home from "./components/Home";
 import Carrinho from "./components/Carrinho";
 import Context from "./components/contexts/Context";
 import AddBook from "./components/AddBook"
+import Checkout from "./components/Checkout";
+import Options from "./components/Options"
  
 export default function App() {
   const [bookGenre, setBookGenre] = useState("all");
@@ -27,6 +29,8 @@ export default function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/sold" element={<AddBook />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/options" element={<Options />} />
           </Routes>
         </Context.Provider>
 
