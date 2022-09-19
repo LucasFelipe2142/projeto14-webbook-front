@@ -52,7 +52,7 @@ const {setBookGenre} = useContext(Contextos);
                         <p onClick={()=>{
                           setBookGenre('all')
                           navigate('/home')
-                        }}>Todos</p>
+                        }}>TODOS</p>
                        
                     </div>
                 <p onClick={() => navigate("/sold")}>VENDER LIVRO</p>
