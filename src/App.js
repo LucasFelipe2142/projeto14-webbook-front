@@ -4,9 +4,9 @@ import Login from "./components/Login";
 import GlobalStyle from "./styles/globalStyles";
 import Registration from "./components/Registration";
 import Home from "./components/Home";
-
 import Carrinho from "./components/Carrinho";
 import Context from "./components/contexts/Context";
+import AddBook from "./components/AddBook"
  
 export default function App() {
   const [bookGenre, setBookGenre] = useState("all");
@@ -26,6 +26,7 @@ export default function App() {
             <Route path="/cadastro" element={<Registration />} />
             <Route path="/home" element={<Home />} />
             <Route path="/carrinho" element={<Carrinho />} />
+            <Route path="/sold" element={<AddBook />} />
           </Routes>
         </Context.Provider>
 
