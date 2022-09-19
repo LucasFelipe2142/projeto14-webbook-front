@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { AiFillCloseCircle } from "react-icons/ai";
-
+import { useContext } from "react";
+import Contextos from "./contexts/Context";
 
 export default function Options(){
+const {setBookGenre} = useContext(Contextos);
 
     const navigate = useNavigate();
 
@@ -19,13 +21,34 @@ export default function Options(){
           <div className="Lista">
                 <p>CATEGORIAS:</p>
                     <div className="gen">
-                        <p>ROMANCE</p>
-                        <p>AVENTURA</p>
-                        <p>FICÇÃO CIENTIFICA</p>
-                        <p>FANTASIA</p>
-                        <p>BIOGRAFIA</p>
-                        <p>DIDATICOS</p>
-                        <p>INFANTIS</p>
+                        <p onClick={()=>{
+                          setBookGenre('romance')
+                          navigate('/')
+                        }}>ROMANCE</p>
+                        <p onClick={()=>{
+                          setBookGenre('aventura')
+                          navigate('/')
+                        }}>AVENTURA</p>
+                        <p onClick={()=>{
+                          setBookGenre('ficção')
+                          navigate('/')
+                        }}>FICÇÃO CIENTIFICA</p>
+                        <p onClick={()=>{
+                          setBookGenre('fantasia')
+                          navigate('/')
+                        }}>FANTASIA</p>
+                        <p onClick={()=>{
+                          setBookGenre('biogarfia')
+                          navigate('/')
+                        }}>BIOGRAFIA</p>
+                        <p onClick={()=>{
+                          setBookGenre('didaticos')
+                          navigate('/')
+                        }}>DIDATICOS</p>
+                        <p onClick={()=>{
+                          setBookGenre('infantis')
+                          navigate('/')
+                        }}>INFANTIS</p>
                        
                     </div>
                 <p onClick={() => navigate("/sold")}>VENDER LIVRO</p>

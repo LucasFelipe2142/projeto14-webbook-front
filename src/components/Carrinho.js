@@ -66,10 +66,13 @@ export default function Carrinho(){
           token: token
         }
       }
-
+      try{      
       await axios.post("http://localhost:5000/purchases", {cart}, config);
       console.log(cart);
-      navigate("/checkout")
+      await axios.delete("http://localhost:5000/purchases", config)
+    } catch(error){console.log(error)}
+  
+        navigate("/checkout")
     }
 
     return(
