@@ -15,7 +15,7 @@ const local = 'http://localhost:5000'
 
 export default function App() {
   const [bookGenre, setBookGenre] = useState("all");
-  const[rota,setRota] = useState(deploy);
+  const[rota,setRota] = useState('https://back-webook.herokuapp.com');
   return (
     <>
       <GlobalStyle />

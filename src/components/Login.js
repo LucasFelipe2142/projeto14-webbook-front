@@ -11,16 +11,16 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const {rota} = useContext(Contextos)
 
-  useEffect(() => {
-    axios
-      .delete(`${rota}/logout`)
-      .then((response) => {
-        console.log('apagado')
-      })
-      .catch((error) => {
-        return "erro" + error;
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .delete(`${rota}/logout`)
+  //     .then((response) => {
+  //       console.log('apagado')
+  //     })
+  //     .catch((error) => {
+  //       return "erro" + error;
+  //     });
+  // }, []);
 
   return (
     <Container>
