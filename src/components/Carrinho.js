@@ -4,103 +4,101 @@ import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import Top from "./Top";
 
-
-
-
-function CarrinhoProduto({nome, preco, imagem} ){
-
-
-
-  return(<>
-  
-  <div className="produto">
-                  <img src={imagem}></img>
-                  <div className="info">
-                    <div>
-                     <div>Produto: {nome}</div>
-                     <div>Preço: {preco}</div>
-                    </div>
-                    <div className="quantidade">
-                      <div>Quantidade:</div> 
-                    </div>
-                  </div>
-                </div>
-  </>);
+function CarrinhoProduto({ nome, preco, imagem }) {
+  return (
+    <>
+      <div className="produto">
+        <img src={imagem}></img>
+        <div className="info">
+          <div>
+            <div>Produto: {nome}</div>
+            <div>Preço: {preco}</div>
+          </div>
+          <div className="quantidade">
+            <div>Quantidade:</div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-
-
-export default function Carrinho(){
-
+export default function Carrinho() {
   const navigate = useNavigate();
 
-  const [ cart, setCart ] = useState("");
+  const [cart, setCart] = useState("");
 
-  useEffect(() => {  
-      //console.log(localStorage.getItem("token"));
-      getCart();
-    }, []);
+  useEffect(() => {
+    //console.log(localStorage.getItem("token"));
+    getCart();
+  }, []);
 
-    async function getCart(){
+  async function getCart() {
+    const token = localStorage.getItem("token").replace(/["']/g, "");
 
-      const token = localStorage.getItem("token").replace(/["']/g, "");
-      
-      const config = {
-        headers: {
-          token: token
-        }
-      }
+    const config = {
+      headers: {
+        token: token,
+      },
+    };
 
-      const cartData = await (await axios.get(`http://localhost:5000/cart`, config)).data;
-      console.log(cartData);
-      setCart(cartData);
+    const cartData = await (
+      await axios.get(`http://localhost:5000/cart`, config)
+    ).data;
+    console.log(cartData);
+    setCart(cartData);
+  }
 
-    }
+  async function checkout() {
+    const token = localStorage.getItem("token").replace(/["']/g, "");
 
-    async function checkout(){
-
-      const token = localStorage.getItem("token").replace(/["']/g, "");
-
-      const config = {
-        headers: {
-          token: token
-        }
-      }
-      try{      
-      await axios.post("http://localhost:5000/purchases", {cart}, config);
+    const config = {
+      headers: {
+        token: token,
+      },
+    };
+    try {
+      await axios.post("http://localhost:5000/purchases", { cart }, config);
       console.log(cart);
-      await axios.delete("http://localhost:5000/purchases", config)
-    } catch(error){console.log(error)}
-  
-        navigate("/checkout")
+    } catch (error) {
+      console.log(error);
     }
 
-    return(
-        <Container>
-            <Top/>
-            <div className="title">
-                <p>Carrinho de compras</p>
-            </div>
-            <Lista>
-            {cart ? cart.products.map(produto => <CarrinhoProduto nome={produto.name} preco={produto.price} imagem={produto.imgUrl}/>) : <div>O carrinho está vazio</div>}
-            
-                
-            </Lista>
-            
+    navigate("/checkout");
+  }
 
-            <div className="button">Continuar Comprando</div>
-                <div className="confirma"> 
-                    <div>Subtotal: {cart.totalPrice}R$</div>
-                    <div className="button" onClick={() => checkout()}>Confirmar compra</div>
-                </div>
+  return (
+    <Container>
+      <Top />
+      <div className="title">
+        <p>Carrinho de compras</p>
+      </div>
+      <Lista>
+        {cart ? (
+          cart.products.map((produto) => (
+            <CarrinhoProduto
+              nome={produto.name}
+              preco={produto.price}
+              imagem={produto.imgUrl}
+            />
+          ))
+        ) : (
+          <div>O carrinho está vazio</div>
+        )}
+      </Lista>
 
-        
-        </Container>
-    );
+      <div className="button">Continuar Comprando</div>
+      <div className="confirma">
+        <div>Subtotal: {cart.totalPrice}R$</div>
+        <div className="button" onClick={() => checkout()}>
+          Confirmar compra
+        </div>
+      </div>
+    </Container>
+  );
 }
 
 const Container = styled.div`
-
   width: 100%;
   height: 100vh;
   background-color: white;
@@ -110,10 +108,10 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  .title{
+  .title {
     width: 120px;
     height: 15px;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 300;
     font-size: 13px;
@@ -122,10 +120,9 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
 
-  .button{
+  .button {
     width: 326px;
     height: 46px;
     left: 23px;
@@ -147,17 +144,14 @@ const Container = styled.div`
     color: #ffffff;
   }
 
-  .confirma .button{
-    background-color: #3296D4;
+  .confirma .button {
+    background-color: #3296d4;
   }
-
-
-`
+`;
 const Lista = styled.div`
-
   width: 100%;
   height: 100vh;
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
   margin-top: 10px;
 
   display: flex;
@@ -165,11 +159,10 @@ const Lista = styled.div`
   align-items: center;
   justify-content: center;
 
-
-  .produto{
+  .produto {
     width: 325px;
     height: 119px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 5px;
     padding: 19 19 10 16;
     margin: 10px;
@@ -177,25 +170,20 @@ const Lista = styled.div`
     display: flex;
   }
 
-  .info{
-    display:flex;
+  .info {
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
   }
 
-  .quantidade{
+  .quantidade {
     display: flex;
     justify-content: space-around;
-
   }
 
-  img{
+  img {
     width: 76px;
     height: 98px;
     border-radius: 0%;
-
   }
-
- 
-  
-`
+`;
