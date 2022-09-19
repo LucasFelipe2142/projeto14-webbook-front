@@ -43,7 +43,7 @@ export default function ContainerBooks(props) {
     <>
       {newBooks.map((book, index) => (
         <div key={index}>
-          <Flyer_props url={book.url} name={book.name} />
+          <Flyer_props book={book} />
         </div>
       ))}
     </>

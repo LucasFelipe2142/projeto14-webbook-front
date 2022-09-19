@@ -1,24 +1,41 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Flyer_props(props) {
+export default function Flyer_props({ book }) {
   const [mostrar, setMostrar] = useState("none");
 
   return (
     <>
       <Flyer_Style onClick={() => setMostrar("inherit")}>
-        <img src={props.url} />
+        <img src={book.url} />
         <div className="inf">
-          {props.name} <p>+</p>
+          {book.name} <p>+</p>
         </div>
       </Flyer_Style>
       <BookInf mostrar={mostrar}>
         <div className="background"></div>
         <div className="container">
           <div className="boxInf">
-            <div className="top">
-              <img src={props.url} />
-              <p>{props.name}</p>
+            <div className="content">
+              <div className="top">
+                <img src={book.url} />
+                <div className="names">
+                  <p>{book.name}</p>
+                  <h2>{book.autor}</h2>
+                </div>
+              </div>
+              <h1>Sinopse:</h1>
+              <div className="sinopse">{book.description}</div>
+              <div className="price">
+                <p>Valor:</p>
+                {"R$ " + book.price}
+              </div>
+            </div>
+            <div className="buttons">
+              <div className="add">Adicionar ao carrinho</div>
+              <div className="back" onClick={() => setMostrar("none")}>
+                Cancelar
+              </div>
             </div>
           </div>
         </div>
@@ -52,6 +69,9 @@ const BookInf = styled.div`
     align-items: center;
   }
   .boxInf {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     left: 10vh;
     width: 294px;
     height: 394px;
@@ -60,6 +80,19 @@ const BookInf = styled.div`
     border-radius: 10px;
     z-index: 1;
     margin-top: 85px;
+
+    h1 {
+      margin-left: 19px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+
+      font-style: normal;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 15px;
+
+      color: #000000;
+    }
 
     img {
       width: 76px;
@@ -74,13 +107,91 @@ const BookInf = styled.div`
       margin-left: 19px;
       margin-top: 20px;
       display: flex;
+      .names {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p {
+          width: 140px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 28px;
 
+          color: #000000;
+        }
+        h2 {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 15px;
+
+          color: #000000;
+        }
+      }
+    }
+
+    .sinopse {
+      width: 250px;
+      margin-left: 19px;
+
+      font-family: "Roboto";
       font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 28px;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 15px;
+      text-align: justify;
 
       color: #000000;
+    }
+
+    .price {
+      width: 250px;
+      margin-top: 18px;
+      margin-left: 19px;
+
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .buttons {
+      display: flex;
+      .add {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 210px;
+        height: 37px;
+
+        background: #58e855;
+
+        font-style: normal;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 15px;
+        text-align: justify;
+
+        color: #000000;
+      }
+      .back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 84px;
+        height: 37px;
+
+        background: #f94444;
+
+        font-style: normal;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 15px;
+        text-align: justify;
+
+        color: #000000;
+      }
     }
   }
 `;
