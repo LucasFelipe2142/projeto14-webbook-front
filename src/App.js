@@ -10,8 +10,12 @@ import AddBook from "./components/AddBook"
 import Checkout from "./components/Checkout";
 import Options from "./components/Options"
  
+//https://project-14-webook.herokuapp.com
+//http://localhost:5000
+
 export default function App() {
   const [bookGenre, setBookGenre] = useState("all");
+  const[rota,setRota] = useState("https://project-14-webook.herokuapp.com");
   return (
     <>
       <GlobalStyle />
@@ -21,6 +25,7 @@ export default function App() {
           value={{
             bookGenre,
             setBookGenre,
+            rota
           }}
         >
           <Routes>

@@ -10,7 +10,7 @@ export default function Top() {
         <AiOutlineMenu color="white" />
       </div>
       <div onClick={() => navigate("/home")}>WEBOOK</div>
-      <div onClick={() => navigate("/buying")}>
+      <div onClick={() => navigate("/carrinho")}>
         <AiOutlineShopping color="white" fontSize={35} />
       </div>
     </Container>
