@@ -8,8 +8,12 @@ import Carrinho from "./components/Carrinho";
 import Context from "./components/contexts/Context";
 import AddBook from "./components/AddBook"
  
+//https://project-14-webook.herokuapp.com
+//http://localhost:5000
+
 export default function App() {
   const [bookGenre, setBookGenre] = useState("all");
+  const[rota,setRota] = useState("https://project-14-webook.herokuapp.com");
   return (
     <>
       <GlobalStyle />
@@ -19,6 +23,7 @@ export default function App() {
           value={{
             bookGenre,
             setBookGenre,
+            rota
           }}
         >
           <Routes>

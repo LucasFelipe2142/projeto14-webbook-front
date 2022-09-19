@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import axios from "axios";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useNavigate } from "react-router";
+import Contextos from "./contexts/Context";
 
 export default function Flyer_props({ book }) {
   const [mostrar, setMostrar] = useState("none");
   const navigate = useNavigate();
-
+  const {rota} = useContext(Contextos)
   return (
     <>
       <Flyer_Style onClick={() => setMostrar("inherit")}>
@@ -47,7 +48,7 @@ export default function Flyer_props({ book }) {
   );
   function registrateBook() {
     axios
-    .post("https://project-14-webook.herokuapp.com/cart", {
+    .post(`${rota}/cart`, {
         
       name:book.name,
       price: book.price,
@@ -61,7 +62,7 @@ export default function Flyer_props({ book }) {
       })
     .then((response) => {
       console.log("enviado para o carrinho");
-      navigate("/home");
+      setMostrar("none")
     })
     .catch((error) => {
       console.log(error);
@@ -229,7 +230,7 @@ const Flyer_Style = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   img {
     width: 130px;
@@ -237,7 +238,7 @@ const Flyer_Style = styled.div`
   }
   .inf {
     width: 130px;
-    height: 40px;
+    min-height: 50px;
     background: #112255;
 
     font-style: normal;

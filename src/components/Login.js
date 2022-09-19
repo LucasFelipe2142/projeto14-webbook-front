@@ -1,13 +1,27 @@
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState,useContext, useEffect} from "react";
 import logo from "../img/logo.png";
+import Contextos from "./contexts/Context";
 
 export default function Login() {
   const navigate = useNavigate();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const {rota} = useContext(Contextos)
+
+  useEffect(() => {
+    axios
+      .delete(`${rota}/logout`)
+      .then((response) => {
+        console.log('apagado')
+      })
+      .catch((error) => {
+        return "erro" + error;
+      });
+  }, []);
+
   return (
     <Container>
       <img src={logo}></img>
@@ -37,7 +51,7 @@ export default function Login() {
 
   function logar() {
     axios
-      .post("https://project-14-webook.herokuapp.com/login", {
+      .post(`${rota}/login`, {
         email: login,
         password: password,
       })

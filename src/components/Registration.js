@@ -2,10 +2,12 @@
 import styled from "styled-components";
 import logo from "../img/logo.png";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState , useContext} from "react";
 import axios from "axios";
+import Contextos from "./contexts/Context";
 
 export default function Registration() {
+  const {rota} = useContext(Contextos)
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -58,7 +60,7 @@ export default function Registration() {
   function registrate() {
     if (password === confirmPassword) {
       axios
-        .post("https://project-14-webook.herokuapp.com/cadastro", {
+        .post(`${rota}/cadastro`, {
           name: name,
           email: email,
           password: password,

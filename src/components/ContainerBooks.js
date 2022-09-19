@@ -1,16 +1,18 @@
 import axios from "axios";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useEffect } from "react";
 import { IoReloadCircle } from "react-icons/io5";
 import Flyer_props from "./Flyer_props";
+import Contextos from "./contexts/Context";
 
 export default function ContainerBooks(props) {
   const [books, setBooks] = useState([]);
+  const {rota} = useContext(Contextos)
   let newBooks;
   useEffect(() => {
     axios
-      .get(`https://project-14-webook.herokuapp.com/home/${props.genre}`)
+      .get(`${rota}/home/${props.genre}`)
       .then((response) => {
         setBooks(response.data);
         console.log("foi");

@@ -2,9 +2,10 @@
 import styled from "styled-components";
 import logo from "../img/logo.png";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import axios from "axios";
 import Top from "./Top";
+import Contextos from "./contexts/Context";
 
 export default function Registration() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Registration() {
   const [urlCapa, setUrlCapa] = useState("");
   const [genre, setGenre] = useState("");
   const [price, setPrice] = useState("");
+  const {rota} = useContext(Contextos)
 
 
   return (
@@ -90,7 +92,7 @@ export default function Registration() {
   );
     function addBook() {
         axios
-        .post("https://project-14-webook.herokuapp.com/sold", {
+        .post(`${rota}/sold`, {
             
                 name: name,
                 pag_number: pagNumber,
