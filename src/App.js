@@ -15,7 +15,7 @@ const local = 'http://localhost:5000'
 
 export default function App() {
   const [bookGenre, setBookGenre] = useState("all");
-  const[rota,setRota] = useState(local);
+  const[rota,setRota] = useState(deploy);
   return (
     <>
       <GlobalStyle />
